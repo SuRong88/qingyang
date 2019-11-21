@@ -3,6 +3,7 @@
 *****************************/
 /* 主题色 */
 @color: #000;
+@btnColor: #ff6600;
 
 .border_rds(@radius) {
 	-webkit-border-radius: @radius;
@@ -152,19 +153,43 @@
 *****************************/
 html,
 body {
-	background-color: #fff;
+	background-color: #f5f5f5;
 	width: 100%;
 }
 
 body {
-	// min-width: 1200px;
 	font-size: 16px;
 	color: #000000;
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
-	font-family: 'PingFang SC', Microsoft YaHei, arial, tahoma, '\5fae\8f6f\96c5\9ed1', 'Hiragino Sans GB', sans-serif !important;
+	font-family: Microsoft YaHei, arial, tahoma, '\5fae\8f6f\96c5\9ed1', 'Hiragino Sans GB', sans-serif !important;
 }
-
+html,
+body,
+div,
+span,
+p,
+ul,
+ol,
+li,
+form,
+th,
+td,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+title,
+dl,
+dt,
+dd {
+	.bs_bb();
+}
 .wrapper {
 	width: 1200px;
 	margin: 0 auto;
@@ -182,11 +207,1539 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	.content{
+	.content {
 		background-color: #fff;
-		.border_rds(3px);
+		.border_rds(4px);
+	}
+}
+.input:-moz-placeholder,
+.input::-moz-placeholder {
+	opacity: 1;
+}
+.input {
+	&::-webkit-input-placeholder {
+		color: #999999;
+	}
+
+	/* 使用webkit内核的浏览器 */
+	&:-moz-placeholder {
+		color: #999999;
+	}
+
+	/* Firefox版本4-18 */
+	&::-moz-placeholder {
+		color: #999999;
+	}
+
+	/* Firefox版本19+ */
+	&:-ms-input-placeholder {
+		color: #999999;
+	}
+}
+.input {
+	width: 304px;
+	height: 40px;
+	border: 1px solid #e3e3e3;
+	.border_rds(2px);
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #333333;
+	padding: 0 10px;
+	margin-bottom: 20px;
+}
+.btn {
+	line-height: 40px;
+	font-family: NotoSansHans-Regular;
+	font-size: 16px;
+	color: #ffffff;
+	text-align: center;
+	.border_rds(2px);
+	border: 0;
+	outline: none;
+	background-color: @btnColor;
+}
+// toast样式
+.warning {
+	display: block;
+	padding: 0 12px;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 0;
+	.border_rds(4px);
+	.el-message__content {
+		line-height: 40px;
 	}
 }
 /*****************************
-各个组件样式
+布局样式（页面样式）
 *****************************/
+// 头部
+.header {
+	.top-bar-a {
+		display: block;
+		width: 100%;
+	}
+	.top-bar {
+		display: block;
+		width: 100%;
+	}
+}
+// 登录
+.login {
+	padding-top: 67px;
+	.code-box {
+		width: 304px;
+		display: flex;
+		border: 1px solid #e3e3e3;
+		overflow: hidden;
+		margin-bottom: 30px;
+		.border_rds(2px);
+		overflow: hidden;
+		.input {
+			flex: 1;
+			border: 0;
+			margin-bottom: 0;
+		}
+	}
+	.code-pic {
+		width: 83px;
+		height: 100%;
+	}
+	.forget-txt {
+		text-decoration: underline;
+	}
+	.spe {
+		display: block;
+		margin: 0 10px;
+		width: 1px;
+		height: 12px;
+		background-color: #333;
+	}
+	.register-txt {
+		color: red;
+		margin-left: 12px;
+	}
+}
+// 注册
+.register {
+	padding-top: 120px;
+	.code-box1 {
+		width: 304px;
+		display: flex;
+		border: 1px solid #e3e3e3;
+		overflow: hidden;
+		margin-bottom: 30px;
+		.border_rds(2px);
+		overflow: hidden;
+		.input {
+			flex: 1;
+			border: 0;
+			margin-bottom: 0;
+		}
+		.get-code {
+			padding: 0 17px;
+			font-family: PingFangSC-Regular;
+			font-size: 14px;
+			line-height: 38px;
+			color: #ff6633;
+			cursor: pointer;
+		}
+	}
+	.code-pic {
+		width: 83px;
+		height: 100%;
+	}
+	.spe {
+		display: block;
+		margin: 0 10px;
+		width: 1px;
+		height: 12px;
+		background-color: #333;
+	}
+
+	.login-txt {
+		color: red;
+		margin-left: 12px;
+	}
+	.code-box2 {
+		width: 270px;
+		display: flex;
+		.border_rds(2px);
+		overflow: hidden;
+		border: 1px solid #e3e3e3;
+		.input {
+			flex: 1;
+			margin-bottom: 0;
+			border: 0;
+		}
+		.code-pic {
+			width: 83px;
+			height: 100%;
+		}
+	}
+}
+// 设置密码
+.setting {
+	padding-top: 174px;
+	.input {
+		margin-bottom: 0;
+	}
+	.title {
+		margin-bottom: 36px;
+	}
+	.tip {
+		width: 304px;
+		font-family: PingFangSC-Regular;
+		font-size: 12px;
+		color: #999999;
+		padding-left: 10px;
+		margin: 5px 0 17px 0;
+	}
+	.btn-confirm {
+		margin-top: 30px;
+	}
+	.success-icon {
+		width: 94px;
+		height: 94px;
+	}
+	.success-txt {
+		font-family: PingFangSC-Regular;
+		font-size: 20px;
+		color: #333333;
+		margin: 26px 0 20px;
+	}
+	.tip2 {
+		font-family: PingFang-SC-Regular;
+		font-size: 14px;
+		color: #666666;
+		text-align: center;
+	}
+	.btn-back {
+		margin-top: 24px;
+		width: 120px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #979797;
+		background: none;
+		border: 1px solid #e3e3e3;
+		.border_rds(4px);
+	}
+}
+// 忘记密码
+.forget {
+	padding-top: 122px;
+	.code-box {
+		width: 304px;
+		display: flex;
+		.border_rds(2px);
+		overflow: hidden;
+		border: 1px solid #e3e3e3;
+		margin-bottom: 30px;
+		.input {
+			flex: 1;
+			border: 0;
+			margin-bottom: 0;
+		}
+		.get-code {
+			padding: 0 17px;
+			font-family: PingFangSC-Regular;
+			font-size: 14px;
+			line-height: 38px;
+			color: #ff6633;
+			cursor: pointer;
+		}
+	}
+}
+// 修改密码
+.edit {
+	padding-top: 160px;
+	.input:last-of-type {
+		margin-bottom: 30px;
+	}
+	.success-icon {
+		width: 94px;
+		height: 94px;
+	}
+	.success-txt {
+		font-family: PingFangSC-Regular;
+		font-size: 20px;
+		color: #333333;
+		margin: 26px 0 20px;
+	}
+	.tip2 {
+		font-family: PingFang-SC-Regular;
+		font-size: 14px;
+		color: #666666;
+		text-align: center;
+	}
+	.btn-back {
+		margin-top: 24px;
+		width: 120px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #979797;
+		background: none;
+		border: 1px solid #e3e3e3;
+		.border_rds(4px);
+	}
+}
+.login,
+.register,
+.setting,
+.forget,
+.edit {
+	min-height: 600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	background-color: #fff;
+	.title {
+		font-family: PingFangSC-Regular;
+		font-size: 18px;
+		color: #333333;
+		text-align: center;
+		margin-bottom: 26px;
+	}
+	.reget {
+		color: #999999;
+	}
+	.btn-confirm,
+	.btn-register,
+	.btn-login {
+		width: 304px;
+		margin-bottom: 12px;
+	}
+	.others {
+		width: 304px;
+		font-size: 12px;
+		color: #333333;
+		display: flex;
+		align-items: center;
+	}
+	.tel-box {
+		position: absolute;
+		left: 50%;
+		bottom: 36px;
+		// transform: translateX(-50%);
+		.translateX(-50%);
+		.tel-icon {
+			width: 30px;
+			height: 30px;
+		}
+		.tel-txt {
+			margin: 0 5px;
+			font-family: PingFang-SC-Regular;
+			font-size: 13px;
+			color: #787878;
+		}
+		.tel {
+			font-weight: 400;
+			font-family: DIN-Medium;
+			font-size: 14px;
+			color: #787878;
+		}
+	}
+}
+// 首页(待修改)
+.index {
+	width: 100%;
+	height: 100vh;
+	background: url(../images/banner01.png) center center no-repeat;
+	background-size: cover;
+	position: relative;
+	.menu {
+		position: absolute;
+		left: 50px;
+		bottom: 40px;
+		display: flex;
+	}
+	.menu-item {
+		height: 90px;
+		width: 105px;
+		margin-right: 10px;
+		&:nth-child(1) {
+			width: 165px;
+			background: url(../images/logo@3x.png) center center/cover no-repeat;
+		}
+		&:nth-child(2) {
+			background: url(../images/index_icon01@3x.png) center center/cover no-repeat;
+		}
+		&:nth-child(3) {
+			background: url(../images/index_icon02@3x.png) center center/cover no-repeat;
+		}
+		&:nth-child(4) {
+			background: url(../images/index_icon03@3x.png) center center/cover no-repeat;
+		}
+		.link {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+// 会议介绍、其他内容等富文本页面
+.detail {
+	padding: 0 150px;
+	padding: 50px 0;
+	background-color: #fff;
+	min-height: 600px;
+	.title {
+		text-align: center;
+		margin-bottom: 20px;
+		font-family: PingFang-SC-Bold;
+		font-size: 24px;
+		color: #333333;
+	}
+}
+// 个人中心
+.me {
+	.breadcrumb {
+		height: 43px;
+		display: flex;
+		align-items: center;
+		font-size: 13px;
+		color: #999999;
+		.icon {
+			width: 15px;
+			height: 15px;
+			margin-right: 5px;
+		}
+		.is-link {
+			color: #545454;
+			display: flex;
+			align-items: center;
+		}
+		.el-icon-arrow-right {
+			color: #848484;
+			margin: 0 8px;
+		}
+	}
+	.main-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	.sidebar {
+		background: #3d4144;
+		width: 180px;
+		min-height: 340px;
+		padding: 23px 0px;
+		.border_rds(6px);
+		dt {
+			font-family: PingFangSC-Regular;
+			font-size: 14px;
+			color: #fff;
+			height: 46px;
+			padding-left: 15px;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			&.is-active {
+				span {
+					color: #ff6600;
+					.border_rds(15px);
+					background-color: #fff;
+				}
+			}
+			span {
+				width: 110px;
+				line-height: 30px;
+				position: relative;
+				padding-left: 38px;
+
+				.icon {
+					position: absolute;
+					left: 16px;
+					top: 50%;
+					// transform: translateY(-50%);
+					.translateY(-50%);
+					width: 16px;
+				}
+			}
+		}
+		dd {
+			cursor: pointer;
+			font-size: 13px;
+			color: #999999;
+			line-height: 40px;
+			padding-left: 53px;
+			&.is-active {
+				color: #fff;
+			}
+		}
+	}
+	.screen {
+		width: 1000px;
+		.border_rds(8px);
+		overflow: hidden;
+		margin-bottom: 50px;
+	}
+	.me-index,
+	.me-order {
+		.order-box {
+			padding: 0 30px;
+			min-height: 550px;
+			background-color: #fff;
+			.border_rds(8px);
+			.title {
+				height: 52px;
+				font-size: 16px;
+				color: #333333;
+				border-bottom: 1px solid #e5e5e5;
+				display: flex;
+				align-items: center;
+			}
+			.icon-order {
+				width: 14px;
+				margin-right: 8px;
+			}
+			.labels {
+				margin: 10px 0;
+				background-color: #f5f5f5;
+				display: flex;
+			}
+			.label {
+				font-size: 14px;
+				color: #545454;
+				line-height: 36px;
+			}
+			.pl20 {
+				padding-left: 20px;
+			}
+			.flex3 {
+				flex: 3;
+			}
+			.flex1 {
+				flex: 1;
+			}
+			.order {
+			}
+			.order-item {
+				height: 120px;
+				border: 1px solid #e5e5e5;
+				border-bottom: 0;
+				padding: 20px;
+				display: flex;
+				align-items: center;
+				&:last-child {
+					border-bottom: 1px solid #e5e5e5;
+				}
+			}
+			// 订单详情
+			// 垂直水平居中 方向垂直
+			.flex-ajc-col {
+				display: flex;
+			}
+			.info-box {
+				display: flex;
+				align-items: center;
+			}
+			.img {
+				width: 110px;
+				height: 80px;
+			}
+			.order-info {
+				height: 80px;
+				padding-left: 15px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			.order-title {
+				font-size: 14px;
+				color: #333333;
+			}
+			.order-num {
+				font-size: 12px;
+				color: #999999;
+			}
+			.order-date {
+				font-size: 12px;
+				color: #999999;
+			}
+			.mb8 {
+				margin-bottom: 8px;
+			}
+			.ml6 {
+				margin-left: 6px;
+			}
+			.price {
+				font-size: 14px;
+				color: #ff2933;
+			}
+			.state {
+				font-size: 14px;
+				color: #666666;
+			}
+			.operate {
+				height: 100%;
+				font-size: 14px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
+			}
+			.btn-pay {
+				cursor: pointer;
+				display: block;
+				width: 74px;
+				line-height: 28px;
+				text-align: center;
+				background: #ff6600;
+				.border_rds(4px);
+				color: #fff;
+			}
+			.btn-cancel {
+				cursor: pointer;
+				color: #999999;
+			}
+			.btn-view {
+				cursor: pointer;
+				color: #333333;
+			}
+		}
+	}
+	// 个人中心首页
+	.me-index {
+		.header {
+			width: 100%;
+			height: 150px;
+			padding: 20px 0 20px 30px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: #fff;
+			.border_rds(8px);
+			overflow: hidden;
+		}
+		.avatar {
+			width: 88px;
+			height: 88px;
+			.border_rds(8px);
+			background-color: pink;
+		}
+		.info {
+			flex: 1;
+			padding-left: 23px;
+		}
+		.name {
+			font-size: 18px;
+			color: #333333;
+			margin-bottom: 16px;
+		}
+		.phone {
+			font-size: 12px;
+			color: #666666;
+			margin-bottom: 16px;
+		}
+		.phone-icon {
+			width: 10px;
+			margin-right: 10px;
+		}
+		.edit-btn {
+			font-family: PingFangSC-Regular;
+			font-size: 12px;
+			color: #f5a623;
+			cursor: pointer;
+		}
+		.logout-box {
+			width: 185px;
+			height: 110px;
+			border-left: 1px dashed #ddd;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.btn-logout {
+			cursor: pointer;
+			display: inline-block;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100px;
+			height: 40px;
+			font-size: 14px;
+			border: 1px solid #cccccc;
+			.border_rds(4px);
+			color: #979797;
+		}
+		.order {
+			padding-bottom: 30px;
+			min-height: 550px;
+		}
+	}
+	// 订单列表
+	.me-order {
+		.order {
+			padding-bottom: 30px;
+			min-height: 550px;
+		}
+		.menu {
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #d8d8d8;
+		}
+		.menu-item {
+			width: 114px;
+			text-align: center;
+			line-height: 55px;
+			position: relative;
+			cursor: pointer;
+			&:last-child {
+				&:before {
+					display: none;
+				}
+			}
+			&:before {
+				content: '';
+				display: block;
+				width: 1px;
+				height: 16px;
+				background-color: #d8d8d8;
+				position: absolute;
+				top: 50%;
+				right: 0px;
+				.translateY(-50%);
+			}
+			&.is-active {
+				color: #ef4d06;
+				&:after {
+					content: '';
+					display: block;
+					width: 90px;
+					height: 2px;
+					background-color: #ef4d06;
+					position: absolute;
+					left: 50%;
+					bottom: -1px;
+					.translateX(-50%);
+				}
+			}
+		}
+	}
+	// 公共
+	.me-detail,
+	.me-information {
+		background-color: #fff;
+		padding: 10px 30px 60px;
+		.title-box {
+			border-bottom: 1px solid #d8d8d8;
+		}
+		.title {
+			line-height: 56px;
+			width: 114px;
+			text-align: center;
+			font-size: 16px;
+			color: #3d4144;
+			position: relative;
+			&:after {
+				content: '';
+				display: block;
+				width: 90px;
+				height: 2px;
+				background-color: #3d4144;
+				position: absolute;
+				left: 50%;
+				bottom: -1px;
+				.translateX(-50%);
+			}
+		}
+		.border {
+			border: 1px solid #eeeeee;
+		}
+		.mb20 {
+			margin-bottom: 20px;
+		}
+		.mb12 {
+			margin-bottom: 12px;
+		}
+		.mt12 {
+			margin-top: 12px;
+		}
+	}
+	// 订单详情页面
+	.me-detail {
+		.state-box {
+			height: 100px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 20px 0px 30px;
+			.clock-icon {
+				width: 16px;
+				height: 16px;
+				margin-right: 3px;
+			}
+			.state {
+				font-family: PingFang-SC-Bold;
+				font-size: 18px;
+				color: #ff6600;
+			}
+			.tip {
+				font-family: NotoSansHans-Regular;
+				font-size: 14px;
+				color: #666666;
+			}
+			.downtime {
+				color: #ff0021;
+				margin: 0 3px;
+			}
+			.r {
+				font-size: 14px;
+			}
+			.is-close {
+				color: #999;
+				.price {
+					color: #999;
+					&:before {
+						color: #999;
+					}
+				}
+			}
+			.price {
+				margin-left: 10px;
+				font-family: DINPro-Medium;
+				font-size: 22px;
+				color: #ff0021;
+				&:before {
+					content: '￥';
+					font-size: 14px;
+				}
+			}
+			.btn-cancel {
+				font-family: NotoSansHans-Regular;
+				font-size: 14px;
+				color: #999999;
+				width: 74px;
+				line-height: 28px;
+				text-align: center;
+				display: block;
+				margin-right: 14px;
+			}
+			.btn-pay {
+				font-family: NotoSansHans-Regular;
+				font-size: 14px;
+				color: #ffffff;
+				width: 74px;
+				line-height: 28px;
+				text-align: center;
+				display: block;
+				background: #ff6600;
+				.border_rds(4px);
+			}
+		}
+		.info-box {
+			font-size: 14px;
+			font-family: NotoSansHans-Regular;
+			color: #333333;
+			.info-title {
+				line-height: 40px;
+				border-bottom: 1px solid #eeeeee;
+				padding-left: 20px;
+			}
+			.info-title-desc {
+				color: #666;
+				margin-left: 10px;
+			}
+			.info-bd {
+				padding: 20px 20px 30px;
+				overflow: hidden;
+			}
+			.info-bd-item {
+				margin-bottom: 20px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			.spe {
+				display: inline-block;
+				width: 16px;
+				height: 1px;
+				background: #333;
+				margin: 0 6px;
+			}
+			.label {
+				display: block;
+				width: 60px;
+				margin-right: 10px;
+				color: #999;
+				text-align: justify;
+			}
+			.txt {
+			}
+		}
+		.info-box01 {
+			.price-info {
+				border: 1px solid #eeeeee;
+				width: 130px;
+			}
+			.date {
+				display: block;
+				text-align: center;
+				font-size: 12px;
+				color: #333333;
+				text-align: center;
+				line-height: 26px;
+				background-color: #f5f5f5;
+			}
+			.bd {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 50px;
+				border-top: 1px solid #eeeeee;
+			}
+			.price {
+				font-size: 12px;
+				color: #ff6600;
+				margin-bottom: 5px;
+			}
+			.desc {
+				font-size: 12px;
+				color: #999999;
+			}
+			.sub-box {
+				padding: 20px 20px 30px;
+				.flex1 {
+					flex: 1;
+				}
+				.flex3 {
+					flex: 3;
+				}
+				.sub-main {
+					border: 1px solid #eeeeee;
+				}
+				.sub-hd {
+					line-height: 36px;
+					padding-left: 20px;
+					background-color: #f5f5f5;
+					border-bottom: 1px solid #eeeeee;
+				}
+				.sub-bd {
+					padding-left: 20px;
+				}
+				.sub-bd-item {
+					line-height: 50px;
+				}
+				.price {
+					margin-left: 4px;
+					font-family: DINPro-Medium;
+					font-size: 22px;
+					color: #ff6600;
+					&:before {
+						content: '￥';
+						font-size: 14px;
+					}
+				}
+			}
+		}
+		.info-box03 {
+			.info-bd {
+				padding: 10px 20px 30px;
+				overflow: hidden;
+			}
+			.info-bd-item {
+				margin-bottom: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				height: 74px;
+				border-bottom: 1px solid #eeeeee;
+			}
+			.t {
+				margin-bottom: 14px;
+			}
+			.icon {
+				line-height: 20px;
+				width: 40px;
+				margin-right: 10px;
+				font-size: 12px;
+				text-align: center;
+				display: block;
+				background: #abb6b9;
+				color: #fff;
+				.border_rds(8px 0px 8px 0px);
+			}
+			.flex3 {
+				flex: 3;
+			}
+			.flex2 {
+				flex: 2;
+			}
+		}
+	}
+	.me-information {
+		.info-box {
+			height: 420px;
+			border-bottom: 1px solid #ddd;
+			.btn-save {
+				display: block;
+				width: 110px;
+				line-height: 40px;
+				text-align: center;
+				.border_rds(2px);
+				font-size: 14px;
+				color: #ffffff;
+				background-color: #ff6600;
+			}
+			.upload-box {
+				border: 1px solid #dddddd;
+				width: 120px;
+				height: 120px;
+				position: relative;
+				background: url(../images/avatar.png) center center/85% no-repeat;
+				margin-bottom: 26px;
+			}
+			.upload {
+				opacity: 0;
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+			}
+			.upload-desc {
+				width: 100%;
+				line-height: 28px;
+				text-align: center;
+				background-color: rgba(0, 0, 0, 0.6);
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font-size: 14px;
+				color: #ffffff;
+			}
+			.nickname {
+				font-size: 16px;
+				color: #333333;
+			}
+			.label {
+				font-size: 14px;
+				color: #cccccc;
+				margin-right: 20px;
+			}
+			.contact-box {
+				margin: 45px 0;
+				li {
+					&:first-child {
+						margin-right: 32px;
+					}
+				}
+			}
+			.info-input {
+				padding: 0 10px;
+				border: 1px solid #e3e3e3;
+				.border_rds(2px);
+				width: 180px;
+				height: 40px;
+				font-size: 14px;
+				color: #444444;
+			}
+		}
+
+		.safety-box {
+			ul {
+				height: 70px;
+			}
+			border-bottom: 1px solid #ddd;
+		}
+		.sub-title {
+			line-height: 44px;
+			font-family: PingFang-SC-Bold;
+			font-size: 14px;
+			color: #333333;
+		}
+		.safety-item {
+			&:nth-child(1) {
+				width: 80px;
+			}
+			&:nth-child(2) {
+				font-size: 18px;
+				color: #333333;
+			}
+			&:nth-child(3) {
+				width: 1px;
+				height: 20px;
+				margin: 0 28px;
+				background: #e3e3e3;
+			}
+			&:nth-child(4) {
+				flex: 1;
+				display: flex;
+				justify-content: space-between;
+				font-size: 14px;
+				color: #333333;
+			}
+		}
+		.right-icon {
+			width: 18px;
+			height: 18px;
+		}
+		.link-edit {
+			color: #ef4d06;
+		}
+	}
+}
+// 酒店 景点 路线 租车预订信息填写页面
+// 公用
+.reservation {
+	padding: 20px 0 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	.border8 {
+		.border_rds(8px);
+		overflow: hidden;
+	}
+	.l {
+		width: 870px;
+	}
+	.r {
+		background-color: #fff;
+		width: 315px;
+		padding: 25px 20px;
+	}
+	.box {
+		background-color: #fff;
+		padding: 30px;
+		font-size: 14px;
+		color: #333;
+		margin-bottom: 15px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		.title-box {
+			border-bottom: 1px solid #e8e8e8;
+			.title {
+				font-size: 20px;
+				color: #333333;
+				font-weight: 700;
+			}
+			.num {
+				padding: 14px 0 20px;
+			}
+		}
+		.sub-title {
+			padding-bottom: 20px;
+			font-size: 16px;
+			color: #333333;
+			border-bottom: 1px solid #e8e8e8;
+			font-weight: 700;
+		}
+		.form-hd {
+			width: 100%;
+			background-color: #f5f5f5;
+			border: 1px solid #ddd;
+			li {
+				line-height: 36px;
+				text-align: center;
+			}
+		}
+		.form-bd {
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+			li {
+				height: 50px;
+				border-bottom: 1px solid #ddd;
+			}
+		}
+		.label {
+			display: inline-block;
+			width: 70px;
+			color: #999;
+			&.must {
+				&:before {
+					content: '*';
+					color: #d0021b;
+				}
+			}
+		}
+		.input01 {
+			width: 290px;
+			height: 30px;
+			padding: 0 10px;
+			border: 1px solid #dddddd;
+			.border_rds(2px);
+		}
+		.input02 {
+			height: 90px;
+		}
+		.mt6 {
+			margin-top: 6px;
+		}
+		.mt10 {
+			margin-top: 10px;
+		}
+		.warning-input {
+			.input01 {
+				border-color: #d0021b;
+			}
+			.warning-txt {
+				display: block;
+				padding-top: 10px;
+				font-size: 12px;
+				color: #d0021b;
+			}
+		}
+	}
+
+	.btn-commit {
+		margin: 30px 0 100px;
+		.border_rds(8px);
+		display: block;
+		width: 100%;
+		line-height: 54px;
+		font-size: 20px;
+		color: #ffffff;
+		outline: none;
+		border: 0;
+		background-color: @btnColor;
+	}
+	.detail-ul {
+		padding: 22px 0;
+		li {
+			display: flex;
+			justify-content: space-between;
+			font-size: 12px;
+			color: #999999;
+			margin-bottom: 14px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	.r-title {
+		font-size: 16px;
+		color: #333333;
+		font-weight: 700;
+	}
+	.price-box {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 20px;
+		border-top: 1px dashed #d3d3d3;
+		align-items: flex-end;
+	}
+	.price {
+		margin-left: 0px;
+		font-family: DINPro-Medium;
+		font-size: 22px;
+		color: #ff6600;
+		&:before {
+			content: '￥';
+			font-size: 14px;
+		}
+	}
+	.mini-box {
+		width: 130px;
+		height: 30px;
+		border: 1px solid #dddddd;
+		.border_rds(2px);
+		position: relative;
+	}
+	.date2 {
+		line-height: 28px;
+		padding-left: 8px;
+	}
+	.spe {
+		display: block;
+		width: 12px;
+		height: 1px;
+		background-color: #979797;
+		margin: 0 10px;
+	}
+	.calendar-icon {
+		width: 14px;
+		height: 14px;
+		position: absolute;
+		top: 50%;
+		right: 8px;
+		.translateY(-50%);
+		cursor: pointer;
+	}
+	.count {
+		margin-left: 10px;
+	}
+	.buy-num {
+		text-align: center;
+		border: 0;
+		width: 68px;
+		height: 100%;
+		border-left: 1px solid #dddddd;
+		border-right: 1px solid #dddddd;
+		position: absolute;
+		left: 30px;
+		top: 0;
+		font-size: 13px;
+		color: #333333;
+	}
+	.icon {
+		width: 30px;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		cursor: pointer;
+		&.icon2 {
+			left: auto;
+			right: 0;
+		}
+	}
+	.tourist-item {
+		position: relative;
+		padding: 20px 0 30px 25px;
+		margin-bottom: 20px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.tourist {
+		display: inline-block;
+		line-height: 30px;
+		padding: 0 14px;
+		.border_rds(8px 0px 8px 0px);
+		background: #abb6b9;
+		font-size: 14px;
+		color: #ffffff;
+		margin-bottom: 22px;
+	}
+	// 证件类型
+	.type-select-box {
+		position: relative;
+		width: 290px;
+		height: 30px;
+		border: 1px solid #dddddd;
+		.border_rds(2px);
+		margin-right: 22px;
+		&:after {
+			content: '';
+			background: url(../images/down_arrow.png) center center/cover no-repeat;
+			width: 12px;
+			height: 12px;
+			display: block;
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			.translateY(-50%);
+		}
+	}
+	.type-select {
+		width: 100%;
+		height: 100%;
+		border: 0;
+		padding: 0 10px;
+	}
+	.gender {
+		width: 290px;
+		height: 30px;
+		border: 1px solid #dddddd;
+		.border_rds(2px);
+	}
+	.gender-item {
+		display: block;
+		line-height: 30px;
+		text-align: center;
+		width: 145px;
+		cursor: pointer;
+		&.is-select {
+			color: @btnColor;
+			border: 1px solid #ddd;
+			border-color: @btnColor!important;
+			&:last-child {
+				width: 146px;
+				margin: -1px -1px -1px -1px;
+			}
+		}
+		&:first-child {
+			border-right: 1px solid #ddd;
+			margin: -1px 0 -1px -1px;
+		}
+	}
+}
+.hotels-reservation {
+	.box1 .info-wrapper {
+		padding-top: 30px;
+		li {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.price-info {
+			border: 1px solid #eeeeee;
+			width: 130px;
+		}
+		.date {
+			display: block;
+			text-align: center;
+			font-size: 12px;
+			color: #333333;
+			text-align: center;
+			line-height: 26px;
+			background-color: #f5f5f5;
+		}
+		.bd {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 50px;
+			border-top: 1px solid #eeeeee;
+		}
+		.price {
+			font-size: 12px;
+			color: #ff6600;
+			margin-bottom: 5px;
+		}
+		.desc {
+			font-size: 12px;
+			color: #999999;
+		}
+	}
+	.box2 .info-wrapper {
+		padding-top: 20px;
+		li {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.get-code {
+			background-color: #f5f5f5;
+			width: 120px;
+			line-height: 28px;
+			display: block;
+			border: 1px solid #dddddd;
+			.border_rds(2px);
+			font-size: 14px;
+			color: #999999;
+			text-align: center;
+			margin-left: 10px;
+		}
+	}
+	.box3 .info-wrapper {
+		li {
+			margin-bottom: 15px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+.spots-reservation {
+	.title-box {
+		.ticket-desc {
+			font-size: 16px;
+			color: #4a90e2;
+			flex-shrink: 0;
+			cursor: pointer;
+			font-weight: 400;
+		}
+		.arrow-icon {
+			width: 16px;
+			margin-left: 2px;
+			flex-shrink: 0;
+		}
+	}
+	.box1 .info-wrapper {
+		min-height: 100px;
+		background: #f9f9f9;
+		border: 1px solid #ffaa25;
+		box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+	}
+	.box2 .info-wrapper {
+		padding-top: 20px;
+		li {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.get-code {
+			background-color: #f5f5f5;
+			width: 120px;
+			line-height: 28px;
+			display: block;
+			border: 1px solid #dddddd;
+			.border_rds(2px);
+			font-size: 14px;
+			color: #999999;
+			text-align: center;
+			margin-left: 10px;
+		}
+	}
+	.box3 .info-wrapper {
+		li {
+			margin-bottom: 15px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+.lines-reservation {
+	.box1 .info-wrapper {
+		padding-top: 30px;
+		& > li {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	.box2 .info-wrapper {
+		padding-top: 20px;
+		li {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	.box3 .info-wrapper {
+		li {
+			margin-bottom: 15px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+.rentals-reservation {
+	.r {
+		.order-img {
+			width: 100%;
+			margin: 20px 0;
+		}
+	}
+	.box1 {
+		.info-wrapper {
+			padding-top: 30px;
+			& > li {
+				margin-bottom: 20px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	.box2 .info-wrapper {
+		padding-top: 20px;
+		li {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

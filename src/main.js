@@ -4,7 +4,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import request from "utils/request";
+import "api"
+import "utils/request";
 import formcheck from 'utils/formcheck';
 import layout from 'utils/layout';
 import errorCode from 'utils/errorCode';
@@ -28,6 +29,3 @@ window.vm = new Vue({
 	store,
 	render: h => h(App)
 }).$mount("#app");
-// 测试 移动端弹窗
-import Toast from './Toast'
-Vue.use(Toast);

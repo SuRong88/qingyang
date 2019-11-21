@@ -1,38 +1,25 @@
 <template>
 	<div class="index">
-		index
+		<ul class="menu">
+			<li class="menu-item"><a class="link" href=""></a></li>
+			<li class="menu-item"><a class="link" href="/introduce"></a></li>
+			<li class="menu-item"><a class="link" href=""></a></li>
+			<li class="menu-item"><a class="link" href=""></a></li>
+		</ul>
 	</div>
 </template>
 
 <script>
-	export default {
-		name: 'index',
-		created() {
-			// this.infoToast('消息提示')
-			// this.wDialog('标题','内容')
-			// this.$errorToast('错误提示',2000)
-			// setTimeout(()=>{
-			// 	this.$successToast('成功提示',5000)
-			// },5000)
-		},
-		mounted() {},
-		data() {
-			return {
-			};
-		},
-		computed: {},
-		watch: {
-		},
-		methods: {
-		}
-	}
+export default {
+	created() {},
+	mounted() {},
+	data() {
+		return {};
+	},
+	computed: {},
+	watch: {},
+	methods: {}
+};
 </script>
 
-<style>
-	.info{
-		background-color: #409EFF;
-	}
-	.icon{
-		color: cyan;
-	}
-</style>
+<style></style>

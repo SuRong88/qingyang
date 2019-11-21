@@ -12,7 +12,7 @@ export default {
 						type: 'info',
 						duration: duration,
 						// 是否可关闭
-						showClose: true,
+						showClose: false,
 						// 提示：自定义提示框样式需要配合el-message__content设置文字颜色 
 						// .el-message__closeBtn 设置关闭按钮的样式color
 						// 自定义图标的类名，会覆盖 type
@@ -33,9 +33,12 @@ export default {
 				if (msg) {
 					this.$message({
 						message: msg,
-						type: 'waring',
+						type: 'warning',
 						duration: duration,
-						showClose: true
+						showClose: false,
+						customClass:'warning',
+						iconClass:'none',
+						offset:550
 					});
 					// 等同于上面
 					// this.$message.waring('警告提示')
