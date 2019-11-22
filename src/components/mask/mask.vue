@@ -10,7 +10,7 @@
 					<!-- 标题 end -->
 
 					<!-- 内容区 -->
-					<div class="layer_con flex flex-center"><slot></slot></div>
+					<div class="layer_con"><slot></slot></div>
 					<!-- 内容区 end -->
 
 					<!-- 按钮区 -->
@@ -19,9 +19,9 @@
 						<a href="javascript:;" class="layer_no" v-if="layerData.isNo" @click="layerNo">{{ layerData.no }}</a>
 					</div>
 					<!-- 按钮区 end -->
-					
+
 					<!-- 关闭按钮 -->
-					<a href="javascript:;" class="layer_close" v-if="layerData.isClose" @click="closeLayer"><img src="../assets/images/close.png" alt="" /></a>
+					<a href="javascript:;" class="layer_close" v-if="layerData.isClose" @click="closeLayer"><img src="../../assets/images/close.png" alt="" /></a>
 				</div>
 			</div>
 		</section>
@@ -49,7 +49,7 @@ export default {
 		// 点击阴影关闭弹窗
 		closeLayer() {
 			// this.layerData.isLayer = false
-			this.$emit('close-layer');
+			this.$emit('layer-close');
 		},
 		// 点击内容区防冒泡（避免关闭弹窗）
 		layerCon() {

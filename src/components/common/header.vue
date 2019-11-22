@@ -7,7 +7,6 @@
 </template>
 
 <script>
-	import urls from 'api/index.js';
 	export default {
 		name: 'vHeader',
 		components: {},

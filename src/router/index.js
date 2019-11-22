@@ -4,7 +4,7 @@ import Home from "pages/Home.vue";
 Vue.use(VueRouter);
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
+	return originalPush.call(this, location).catch(err => err)
 }
 const routes = [{
 		path: '/',
@@ -67,7 +67,7 @@ const routes = [{
 				},
 				component: resolve => require(['pages/Detail.vue'], resolve)
 			},
-			
+
 			{
 				name: 'HotelsReservation',
 				path: 'hotelsReservation',
@@ -76,7 +76,7 @@ const routes = [{
 				},
 				component: resolve => require(['pages/HotelsReservation.vue'], resolve)
 			},
-			
+
 			{
 				name: 'SpotsReservation',
 				path: 'spotsReservation',
@@ -138,7 +138,113 @@ const routes = [{
 						component: resolve => require(['pages/me/Detail.vue'], resolve)
 					}
 				]
-			}
+			},
+			// 2019.11.22合并杨东泉部分
+			{
+				name: 'Hotel',
+				path: 'hotel',
+				meta: {
+					title: '酒店'
+				},
+				component: resolve => require(['pages/Hotel.vue'], resolve)
+			},
+			{
+				name: 'HotelDetail',
+				path: 'hotelDetail/:id',
+				meta: {
+					title: '酒店详情'
+				},
+				component: resolve => require(['pages/HotelDetail.vue'], resolve)
+			},
+			{
+				name: 'Place',
+				path: 'place',
+				meta: {
+					title: '景点'
+				},
+				component: resolve => require(['pages/Place.vue'], resolve)
+			},
+			{
+				name: 'PlaceDetail',
+				path: 'placeDetail/:id',
+				meta: {
+					title: '景点详情'
+				},
+				component: resolve => require(['pages/PlaceDetail.vue'], resolve)
+			},
+			{
+				name: 'Route',
+				path: 'route',
+				meta: {
+					title: '线路'
+				},
+				component: resolve => require(['pages/Route.vue'], resolve)
+			},
+			{
+				name: 'RouteDetail',
+				path: 'routeDetail/:id',
+				meta: {
+					title: '线路详情'
+				},
+				component: resolve => require(['pages/RouteDetail.vue'], resolve)
+			},
+			{
+				name: 'Car',
+				path: 'car',
+				meta: {
+					title: '租车'
+				},
+				component: resolve => require(['pages/Car.vue'], resolve)
+			},
+			{
+				name: 'CarDetail',
+				path: 'carDetail/:id',
+				meta: {
+					title: '租车详情'
+				},
+				component: resolve => require(['pages/CarDetail.vue'], resolve)
+			},
+			{
+				name: 'Pay',
+				path: 'pay/:id',
+				meta: {
+					title: '支付'
+				},
+				component: resolve => require(['pages/Pay.vue'], resolve)
+			},
+			{
+				name: 'PaySuccess',
+				path: 'paySuccess',
+				meta: {
+					title: '支付成功'
+				},
+				component: resolve => require(['pages/PaySuccess.vue'], resolve)
+			},
+			{
+				name: 'PayError',
+				path: 'PayError',
+				meta: {
+					title: '支付失败'
+				},
+				component: resolve => require(['pages/PayError.vue'], resolve)
+			},
+			{
+				name: 'Guideline',
+				path: 'guideline',
+				meta: {
+					title: '旅游攻略'
+				},
+				component: resolve => require(['pages/Guideline.vue'], resolve)
+			},
+			{
+				name: 'GuidelineDetail',
+				path: 'guidelineDetail/:id',
+				meta: {
+					title: '旅游攻略详情'
+				},
+				component: resolve => require(['pages/GuidelineDetail.vue'], resolve)
+			},
+			// 2019.11.22合并结束
 		]
 	},
 	{

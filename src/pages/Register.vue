@@ -19,21 +19,21 @@
 			<span class="tel-txt">客服热线：</span>
 			<span class="tel">400-0000-000</span>
 		</div>
-		<mlayer :layerData="layerData" @close-layer="closeHandle" @layer-no="cancelHandle" @layer-yes="confirmHandle">
+		<v-mask :layerData="layerData" @layer-close="closeHandle" @layer-no="cancelHandle" @layer-yes="confirmHandle">
 			<div class="code-box2">
 				<input placeholder="点击验证码可更换" type="text" class="input" v-model="code2" />
 				<img class="code-pic" src="../assets/images/login_pic.jpg" alt="" />
 			</div>
-		</mlayer>
+		</v-mask>
 	</div>
 </template>
 
 <script>
-import mylayer from 'components/mlayer.vue';
+// import vMask from 'components/mask/mask.vue';
 export default {
 	components: {
-		mlayer(resolve) {
-			return require(['@/components/mlayer'], resolve);
+		vMask(resolve) {
+			return require(['@/components/mask/mask.vue'], resolve);
 		}
 	},
 	created() {
@@ -80,4 +80,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+.register {
+	.layer_con {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+</style>

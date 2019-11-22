@@ -1,4 +1,13 @@
 module.exports = {
+	chainWebpack: config => {
+		config.module
+			.rule('images')
+			.use('url-loader')
+			.loader('url-loader')
+			.tap(options => Object.assign(options, {
+				limit: 10000
+			}))
+	},
 	configureWebpack: {
 		resolve: {
 			alias: { // 文件路径别名
