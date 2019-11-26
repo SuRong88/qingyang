@@ -12,7 +12,7 @@
 <script>
 export default {
 	created() {
-		console.log(this.$API)
+		console.log(window.$API)
 	},
 	mounted() {},
 	data() {
