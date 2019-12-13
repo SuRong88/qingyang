@@ -8,6 +8,9 @@
 
 export default {
   name: 'app',
+  created() {
+  	this.getMyInfo();
+  }
 }
 </script>
 

@@ -8,7 +8,7 @@ VueRouter.prototype.push = function push(location) {
 }
 const routes = [{
 		path: '/',
-		redirect: '/Index'
+		redirect: '/index'
 	},
 	{
 		name: 'Index',
@@ -37,7 +37,7 @@ const routes = [{
 				component: resolve => require(['pages/Register.vue'], resolve)
 			}, {
 				name: 'Setting',
-				path: 'setting',
+				path: 'setting/:type',
 				meta: {
 					title: '设置密码'
 				},
@@ -70,7 +70,7 @@ const routes = [{
 
 			{
 				name: 'HotelsReservation',
-				path: 'hotelsReservation',
+				path: 'hotelsReservation/:id',
 				meta: {
 					title: '酒店预订信息填写'
 				},
@@ -79,7 +79,7 @@ const routes = [{
 
 			{
 				name: 'SpotsReservation',
-				path: 'spotsReservation',
+				path: 'spotsReservation/:id',
 				meta: {
 					title: '景点预订信息填写'
 				},
@@ -87,7 +87,7 @@ const routes = [{
 			},
 			{
 				name: 'RentalsReservation',
-				path: 'rentalsReservation',
+				path: 'rentalsReservation/:id',
 				meta: {
 					title: '租车预订信息填写'
 				},
@@ -95,7 +95,7 @@ const routes = [{
 			},
 			{
 				name: 'LinesReservation',
-				path: 'linesReservation',
+				path: 'linesReservation/:id',
 				meta: {
 					title: '路线预订信息填写'
 				},
@@ -248,6 +248,14 @@ const routes = [{
 		]
 	},
 	{
+		name: 'test',
+		path: '/test',
+		meta: {
+			title: '测试页面'
+		},
+		component: resolve => require(['pages/Test.vue'], resolve)
+	},
+	{
 		name: 'error',
 		path: '/404',
 		meta: {
@@ -255,10 +263,10 @@ const routes = [{
 		},
 		component: resolve => require(['pages/404.vue'], resolve)
 	},
-	{
-		path: '*',
-		redirect: '/404'
-	}
+	// {
+	// 	path: '*',
+	// 	redirect: '/404'
+	// }
 ];
 const router = new VueRouter({
 	mode: 'history',

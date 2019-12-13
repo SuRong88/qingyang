@@ -89,7 +89,7 @@ export default {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 99999;
+	z-index: 999;
 }
 .layer_sbox {
 	display: table-cell;

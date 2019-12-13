@@ -31,7 +31,7 @@ module.exports = {
 		port: '8080',
 		proxy: {
 			'/api': {
-				target: 'http://dz25.mrxdtech.com/api/api', // 接口域名(仅本地模式有效)
+				target: 'http://dz26.mrxdtech.com/api/', // 接口域名(仅本地模式有效)
 				changeOrigin: true, //是否跨域
 				pathRewrite: {
 					'^/api': '' //需要rewrite的,

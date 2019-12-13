@@ -2,9 +2,9 @@
 	<div class="index">
 		<ul class="menu">
 			<li class="menu-item"><a class="link" href=""></a></li>
-			<li class="menu-item"><a class="link" href="/introduce"></a></li>
+			<li class="menu-item"><a class="link" href="/detail/meeting"></a></li>
 			<li class="menu-item"><a class="link" href=""></a></li>
-			<li class="menu-item"><a class="link" href=""></a></li>
+			<li class="menu-item"><a class="link" href="/me/index"></a></li>
 		</ul>
 	</div>
 </template>

@@ -1,19 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import app from './modules/app'
-// import search from './modules/search'
-// import user from './modules/user'
-import home from './modules/home'
-// import headline from './modules/headline'
-// import video from './modules/video'
-// import record from './modules/record'
-import getters from './getters'
 Vue.use(Vuex)
 const store = new Vuex.Store({
-	modules: {
-		home
-	},
-	getters
+    state: {
+        myInfo: {}, // 个人信息
+    },
+    mutations: {
+        // 设置用户信息
+        SET_MYINFO(state, data) {
+            state.myInfo = data;
+        },
+        // 清除用户信息
+        CLEAN_MYINFO(state) {
+            localStorage.clear();
+            window.vm.$router.push({
+                path: '/login'
+            });
+            // localStorage.removeItem('token');
+            state.myInfo = {};
+        }
+    },
+    actions: {},
+    modules: {}
 })
 
 export default store

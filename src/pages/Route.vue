@@ -9,57 +9,35 @@
 			<span class="breadcrumb-item">线路</span>
 		</div>
 		<ul class="hotel-list">
-			<li>
+			<li v-if="lineList.length" v-for="line in lineList" :key = "line.id">
 				<div class="hotel-list-item clearfix">
-					<div class="h-img">
-						<img src="@/assets/images/banner01.png">
-					</div>
+					<div class="h-img"><img :src="line.litpic" /></div>
 					<div class="h-info">
-						<p class="h-tit">长隆横琴湾酒店(珠海海洋王国店)</p>
+						<p class="h-tit">{{line.title}}</p>
 						<div class="h-status">
-							<img src="@/assets/images/Label01.png">
-							<img src="@/assets/images/Label02.png">
-							<img src="@/assets/images/Label03.png">
+							<img v-for="icon in line.iconlist" :src="icon.litpic" />
 						</div>
-						<p class="h-tip">私人订制 欢迎致电联系</p>
-						<p class="h-ads"><a href="javascript:;">珠海市横琴新区富祥湾</a></p>
+						<p class="h-tip">{{line.sellpoint}}</p>
+						<p class="h-ads"><a href="javascript:;">{{line.startcity}}出发</a></p>
 						<div class="h-textBox">
-							<p>团期：10-24、10-25、10-26日</p>
-							<p>行程：6天</p>
+							<p>团期：{{line.startdate}}</p>
+							<!-- {{line.linenight}}晚 -->
+							<p>行程：{{line.lineday}}天</p>
 						</div>
 					</div>
-					<div class="h-right">
-						<p class="h-price"><span class="h-unit">￥</span><span class="h-money">1300</span>起</p>
+					<div v-if="line.price>0" class="h-right">
+						<p class="h-price">
+							<span class="h-unit">￥</span>
+							<span class="h-money">{{line.price}}</span>
+							起
+						</p>
 						<div class="h-btnBox">
-							<a href="javascript:;" class="h-btn">查看详情</a>
+							<router-link :to="'/routeDetail/' + line.id" class="h-btn">查看详情</router-link>
 						</div>
 					</div>
-				</div>
-			</li>
-			<li>
-				<div class="hotel-list-item clearfix">
-					<div class="h-img">
-						<img src="@/assets/images/banner01.png">
-					</div>
-					<div class="h-info">
-						<p class="h-tit">长隆横琴湾酒店(珠海海洋王国店)</p>
-						<div class="h-status">
-							<img src="@/assets/images/Label01.png">
-							<img src="@/assets/images/Label02.png">
-							<img src="@/assets/images/Label03.png">
-						</div>
-						<p class="h-tip">私人订制 欢迎致电联系</p>
-						<p class="h-ads"><a href="javascript:;">珠海市横琴新区富祥湾</a></p>
-						<div class="h-textBox">
-							<p>团期：10-24、10-25、10-26日</p>
-							<p>行程：6天</p>
-						</div>
-					</div>
-					<div class="h-right">
+					<div v-else class="h-right">
 						<p class="h-price off">电询</p>
-						<div class="h-btnBox">
-							<a href="javascript:;" class="h-btn off">电询</a>
-						</div>
+						<div class="h-btnBox"><a href="javascript:;" class="h-btn off">电询</a></div>
 					</div>
 				</div>
 			</li>
@@ -68,27 +46,33 @@
 </template>
 
 <script>
-	
-	export default {
-		components: {
-			
-		},
-		created() {
-
-		},
-		mounted() {
-
-		},
-		data() {
-			return {
-			};
-		},
-		computed: {},
-		watch: {},
-		methods: {
+export default {
+	components: {},
+	created() {
+		this.getLineList($API.getLineList, {
+			// 测试 最大值为9
+			page_size: 9,
+			page: 1
+		});
+	},
+	mounted() {},
+	data() {
+		return {
+			lineList:[]
+		};
+	},
+	computed: {},
+	watch: {},
+	methods: {
+		getLineList(url, content) {
+			let data = this.dataHandle(url, content);
+			this.$post(url, data).then(res => {
+				this.lineList = this.dataDecode(res.body).content.list;
+				console.log(this.dataDecode(res.body));
+			});
 		}
 	}
+};
 </script>
 
-<style>
-</style>
+<style></style>

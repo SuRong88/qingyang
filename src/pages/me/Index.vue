@@ -1,16 +1,18 @@
 <template>
 	<div class="me-index">
 		<div class="header">
-			<div class="avatar"><img src="" alt="" /></div>
+			<div class="avatar-box">
+				<img class="avatar" :src="myInfo.headimgurl?myInfo.headimgurl:require('@/assets/images/avatar.png')" alt="" />
+			</div>
 			<ul class="info">
-				<li class="name">4646464646</li>
-				<li class="phone">4646464646</li>
+				<li class="name">{{myInfo.nickname}}</li>
+				<li class="phone">{{myInfo.mobile}}</li>
 				<li class="edit-btn">
 					<!-- 待修改 -->
 					<router-link tag="span" to="/me/information">更改信息</router-link>
 				</li>
 			</ul>
-			<div class="logout-box"><span class="btn-logout">退出登录</span></div>
+			<div class="logout-box"><span class="btn-logout" @click="logoutHandle">退出登录</span></div>
 		</div>
 		<div class="order-box">
 			<div class="title">
@@ -46,7 +48,6 @@
 					<div class="operate flex1">
 						<span class="btn-pay">立即支付</span>
 						<span class="btn-cancel">取消订单</span>
-						<span class="btn-view">查看订单</span>
 						<router-link class="btn-view" tag="span" :to="{
 							path:'/me/detail',
 							params:{}
@@ -69,9 +70,19 @@ export default {
 	data() {
 		return {};
 	},
-	computed: {},
+	computed: {
+		// 用户信息
+		myInfo(){
+			return this.$store.state.myInfo;
+		},
+	},
 	watch: {},
-	methods: {}
+	methods: {
+		logoutHandle(){
+			this.$store.commit("CLEAN_MYINFO");
+			this.$router.push({path:'/login'});
+		}
+	}
 };
 </script>
 

@@ -9,95 +9,31 @@
 			<span class="breadcrumb-item">酒店</span>
 		</div>
 		<ul class="hotel-list">
-			<li>
+			<li v-for="(item, index) in hotelList" :key="index" v-if="hotelList.length > 0">
 				<div class="hotel-list-item clearfix">
-					<div class="h-img">
-						<img src="@/assets/images/banner01.png">
-					</div>
+					<div class="h-img"><img :src="item.litpic" /></div>
 					<div class="h-info">
-						<p class="h-tit">长隆横琴湾酒店(珠海海洋王国店)</p>
-						<div class="h-status">
-							<img src="@/assets/images/Label01.png">
-							<img src="@/assets/images/Label02.png">
-							<img src="@/assets/images/Label03.png">
-						</div>
+						<p class="h-tit">{{ item.title }}</p>
+						<div class="h-status"><img v-for="(label, labelIndex) in item.iconlist" :key="labelIndex" v-if="item.iconlist.length > 0" :src="label.litpic" /></div>
 						<div class="h-type">
-							<p>西式餐厅</p>
-							<p>室外游泳池</p>
-							<p>健身房</p>
-							<p>室内游泳池</p>
-							<p>娱乐场所</p>
+							<p v-for="(service, serviceIndex) in item.servicelist" :key="serviceIndex" v-if="item.servicelist.length > 0">{{ switchServiceType(service) }}</p>
 						</div>
-						<p class="h-ads"><a href="javascript:;">珠海市横琴新区富祥湾</a></p>
+						<p class="h-address"><a href="javascript:;">{{item.address}}</a></p>
 					</div>
-					<div class="h-right">
-						<p class="h-price"><span class="h-unit">￥</span><span class="h-money">1300</span>起</p>
+					<!--价格不为0可以预定， 价格为0为电询 -->
+					<div v-if="item.price > 0" class="h-right">
+						<p class="h-price">
+							<span class="h-unit">￥</span>
+							<span class="h-money">{{ item.price }}</span>
+							起
+						</p>
 						<div class="h-btnBox">
-							<a href="javascript:;" class="h-btn">查看详情</a>
+							<router-link :to="'/hotelDetail/' + item.id" class="h-btn">查看详情</router-link>
 						</div>
 					</div>
-				</div>
-			</li>
-			<li>
-				<div class="hotel-list-item clearfix">
-					<div class="h-img">
-						<img src="@/assets/images/banner01.png">
-					</div>
-					<div class="h-info">
-						<p class="h-tit">长隆横琴湾酒店(珠海海洋王国店)</p>
-						<div class="h-status">
-							<img src="@/assets/images/Label01.png">
-							<img src="@/assets/images/Label02.png">
-							<img src="@/assets/images/Label03.png">
-						</div>
-						<div class="h-type">
-							<p>西式餐厅</p>
-							<p>室外游泳池</p>
-							<p>健身房</p>
-							<p>室内游泳池</p>
-							<p>娱乐场所</p>
-							<p>西式餐厅</p>
-							<p>室外游泳池</p>
-							<p>健身房</p>
-							<p>室内游泳池</p>
-							<p>娱乐场所</p>
-						</div>
-						<p class="h-ads"><a href="javascript:;">珠海市横琴新区富祥湾</a></p>
-					</div>
-					<div class="h-right">
-						<p class="h-price"><span class="h-unit">￥</span><span class="h-money">1300</span>起</p>
-						<div class="h-btnBox">
-							<a href="javascript:;" class="h-btn">查看详情</a>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="hotel-list-item clearfix">
-					<div class="h-img">
-						<img src="@/assets/images/banner01.png">
-					</div>
-					<div class="h-info">
-						<p class="h-tit">长隆横琴湾酒店(珠海海洋王国店)</p>
-						<div class="h-status">
-							<img src="@/assets/images/Label01.png">
-							<img src="@/assets/images/Label02.png">
-							<img src="@/assets/images/Label03.png">
-						</div>
-						<div class="h-type">
-							<p>西式餐厅</p>
-							<p>室外游泳池</p>
-							<p>健身房</p>
-							<p>室内游泳池</p>
-							<p>娱乐场所</p>
-						</div>
-						<p class="h-ads"><a href="javascript:;">珠海市横琴新区富祥湾</a></p>
-					</div>
-					<div class="h-right">
+					<div v-else class="h-right">
 						<p class="h-price off">电询</p>
-						<div class="h-btnBox">
-							<a href="javascript:;" class="h-btn off">电询</a>
-						</div>
+						<div class="h-btnBox"><a href="javascript:;" class="h-btn off">电询</a></div>
 					</div>
 				</div>
 			</li>
@@ -106,27 +42,54 @@
 </template>
 
 <script>
-	
-	export default {
-		components: {
-			
+export default {
+	components: {},
+	created() {
+		this.getHotelList($API.getHotelList, {
+			// 测试 最大值为9
+			page_size: 9,
+			page: 1
+		});
+	},
+	mounted() {},
+	data() {
+		return {
+			serviceTypes: {
+				'2': '酒店各处提供wifi',
+				'7': '西式餐厅',
+				'8': '中式餐厅',
+				'9': '残疾人设施',
+				'10': '室外游泳池',
+				'11': '室内游泳池',
+				'12': '会议室',
+				'13': '健身房',
+				'14': '练歌房',
+				'15': 'SPA'
+			},
+			hotelList: []
+		};
+	},
+	computed: {},
+	watch: {},
+	methods: {
+		getHotelList(url, content) {
+			let data = this.dataHandle(url, content);
+			this.$post(url, data).then(res => {
+				this.hotelList = this.dataDecode(res.body).content.data;
+				// servicelist字符串处理为数组
+				for (let i = 0; i < this.hotelList.length; i++) {
+					this.hotelList[i].servicelist = this.hotelList[i].servicelist != null ? this.hotelList[i].servicelist.split(',') : [];
+				}
+				console.log(this.dataDecode(res.body));
+				// console.log(this.dataDecode(res.body).content.list);
+			});
 		},
-		created() {
-
-		},
-		mounted() {
-
-		},
-		data() {
-			return {
-			};
-		},
-		computed: {},
-		watch: {},
-		methods: {
+		switchServiceType(id) {
+			console.log(typeof id);
+			return this.serviceTypes[id];
 		}
 	}
+};
 </script>
 
-<style>
-</style>
+<style></style>

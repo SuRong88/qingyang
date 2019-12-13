@@ -5,7 +5,7 @@ export default {
 	install: function(Vue) {
 		let loading = null;
 		// 消息提示
-		Vue.prototype.infoToast= function(msg, duration = 3000) {
+		Vue.prototype.infoToast = function(msg, duration = 3000) {
 				if (msg) {
 					this.$message({
 						message: msg,
@@ -16,36 +16,36 @@ export default {
 						// 提示：自定义提示框样式需要配合el-message__content设置文字颜色 
 						// .el-message__closeBtn 设置关闭按钮的样式color
 						// 自定义图标的类名，会覆盖 type
-						iconClass:'icon',
+						iconClass: 'icon',
 						// 自定义类名(提示框的背景颜色)	
-						customClass:'info',
+						customClass: 'info',
 						// 文字居中
-						center:true,
+						center: true,
 						// 关闭执行函数
-						onClose:function(){},
+						onClose: function() {},
 						// 距离顶部（默认20）
-						offset:30
+						offset: 30
 					});
 				}
 			},
-		// 警告提示
-		Vue.prototype.warnToast = function(msg, duration = 3000) {
+			// 警告提示
+			Vue.prototype.warnToast = function(msg, duration = 3000) {
 				if (msg) {
 					this.$message({
 						message: msg,
 						type: 'warning',
 						duration: duration,
 						showClose: false,
-						customClass:'warning',
-						iconClass:'none',
-						offset:550
+						customClass: 'warning',
+						iconClass: 'none',
+						offset: 550
 					});
 					// 等同于上面
 					// this.$message.waring('警告提示')
 				}
 			},
-		// 错误提示
-		Vue.prototype.errorToast = function(msg, duration = 3000) {
+			// 错误提示
+			Vue.prototype.errorToast = function(msg, duration = 3000) {
 				if (msg) {
 					this.$message({
 						message: msg,
@@ -135,6 +135,54 @@ export default {
 			// 日期格式化
 			Vue.prototype.format = function(time, type) {
 				return moment(time).format(type)
+			},
+			// 手机验证码倒计时
+			Vue.prototype.setTime = function(that, downtime = 60) {
+				// 界面倒计时
+				that.phonecode.time = downtime
+				that.phonecode.phoneFlag = 1
+				that.phonecode.phoneText = '重新获取' + that.phonecode.time + 's'
+				var times = setInterval(function() {
+					if (--that.phonecode.time !== 0) {
+						that.phonecode.phoneText = '重新获取' + that.phonecode.time + 's'
+					} else {
+						clearInterval(times)
+						that.phonecode.phoneText = '重新发送'
+						that.phonecode.phoneFlag = 0
+					}
+				}, 1000)
+			},
+			// 获取个人信息
+			Vue.prototype.getMyInfo = function(update, cb_yes, cb_no) {
+				let myInfo = this.$store.state.myInfo || {};
+				if (update || JSON.stringify(myInfo) === '{}') {
+					this.$get($API.getMyInfo, {}).then(res => {
+						// console.log(res);
+						this.$store.commit("SET_MYINFO", res.data);
+						this.loadEnd();
+						cb_yes && cb_yes(res.data);
+					}, error => {
+						cb_no && cb_no(error);
+					})
+				} else {
+					cb_yes && cb_yes(myInfo);
+				}
 			}
+		// 接口数据加密
+		Vue.prototype.timestamp = function() {
+				return Date.parse(new Date()) / 1000;
+			},
+			Vue.prototype.dataHandle = function(uri, content) {
+				api_envelope_body['timestamp'] = this.timestamp();
+				api_envelope_body['content'] = content;
+				api_envelope['body'] = self.btoa(JSON.stringify(api_envelope_body));
+				api_envelope['signature'] = this.md5(api_envelope['body'] + clinet_secret_key);
+				let request_param = JSON.stringify(api_envelope);
+				return request_param;
+			},
+			Vue.prototype.dataDecode = function(data) {
+				return JSON.parse(self.atob(data));
+			}
+		// 接口数据加密结束
 	}
 }
